@@ -1,0 +1,2 @@
+#!/bin/sh
+socat tcp-listen:$PORT,fork,reuseaddr,su=$USER system:"$1"

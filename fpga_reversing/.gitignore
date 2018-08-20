@@ -1,0 +1,6 @@
+a.out
+*.blif
+*.asc
+*.bin
+*.rpt
+*.vcd

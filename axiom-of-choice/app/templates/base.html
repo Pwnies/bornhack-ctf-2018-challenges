@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" type="image/png" href="/static/favicon.png"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Source+Code+Pro" rel="stylesheet">
+    <title>Axiom of Choice</title>
+    <style type="text/css">
+body {
+    font-family: 'Acme', sans-serif;
+    font-size: 150%;
+    margin: 2% 10% 0% 10%;
+}
+
+a {
+    color: #3366cc;
+}
+
+a:visited {
+    color: #75507b;
+}
+
+.menu-item {
+    font-size: 200%;
+    padding: 100pt;
+    text-decoration: None;
+    color: #3366cc;
+}
+
+.menu-item:visited {
+    color: #3366cc;
+}
+
+.contents {
+    margin: 0 10% 0 10%;
+}
+
+h1 {
+    font-size: 300%;
+}
+
+h1:before {
+    content: "« ";
+}
+
+h1:after {
+    content: " »";
+}
+
+h2 {
+    font-size: 200%;
+}
+
+tt {
+    font-family: 'Source Code Pro', monospace;
+}
+
+img {
+    margin: 15pt;
+}
+        </style>
+    </head>
+    <body>
+      <hr />
+      <center>
+        <a href="/introduction" class="menu-item">Introduction</a>
+        <a href="/challenge" class="menu-item">Challenge</a>
+        <a href="/playground" class="menu-item">Playground</a>
+      </center>
+      <hr />
+      <br />
+
+      <center>
+        <h1>
+          {% block title %}{% endblock %}
+        </h1>
+      </center>
+
+      <div class="contents">
+        {% block contents %}{% endblock %}
+      </div>
+    </body>
+</html>

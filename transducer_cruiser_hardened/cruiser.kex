@@ -1,0 +1,18 @@
+main := ((qa | ~/[^\n]/* "No no, tell me a corny joke instead!\n") /\n/)*
+
+solve := ~/ flag\{/ flag  ~/}/ "Congratulations, you found the flag!"
+       | "This is not the flag :("
+
+flag := ~/8faf23532bac34/
+
+qa :=   ~/Why did the cookie go to the hospital\?/ "Because he felt crummy"
+      | ~/Why did Johnny throw the clock out of the window\?/ "Because he wanted to see time fly!"
+      | ~/Why was the baby strawberry crying\?/ "Because his mom and dad were in a jam."
+      | ~/What do lawyers wear to court\?/ "Lawsuits!"
+      | ~/What did one toilet say to the other toilet\?/ "You look flushed"
+      | ~/What does it take to solve this challenge\?/ solve
+      | ~/Why is there a gate around cemetaries\?/ "Because people are dying to get in!"
+      | ~/Why wouldn't the shrimp share his treasure\?/ "Because he was a little shellfish"
+      | ~/What do you call a fake noodle\?/ "An impasta"
+      | ~/What lights up a soccer stadium\?/ "A soccer match"
+      | ~/Why shouldn't you write with a broken pencil\?/ "Because it's pointless."

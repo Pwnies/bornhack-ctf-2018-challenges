@@ -1,0 +1,29 @@
+Title: Painful Network Graphics
+Author: br0ns
+Description: |
+  A frame from the Matrix movie just after Neo (Keanu Reaves) comes back out of
+  the Kung Fu training simulation.  Well, and the flag for this challenge, of
+  course.
+Copyright: Copyright Pwnies 2018
+Creation Time: July 19 2018
+Software: www.inkscape.org
+Disclaimer: We cannot be held liable for any loss of sanity
+Warning: |
+  A good CTF challenge strikes a fine balance between the real and the imagined;
+  it should demonstrate or teach some technique or concept related to the Real
+  World^TM while cutting away all the tediousness and cruft so as to be fun to
+  solve.  Alas this challenge meets none of those criteria.  It is pure
+  tediousness and no fun (which makes Jack a dull boy), and so far removed from
+  any sane version of realism that I feel compelled to explain, to defend even,
+  myself.  When I got the idea for this challenge, I was wondering exactly how
+  much structure, redundancy, there is your regular PNG file.  Would it be
+  possible to reconstruct it after byte-substitution with a completely random
+  key? After about a week's work I think of myself as a somewhat credible source
+  when I say 'Hell no, not in a million years!'.  So I started adding things to
+  the file, so that you would have more to work with, to guess at, in this
+  Pandora's Sudoku.  It was not enough.  If you're reading this, then you know
+  about the S-box.  This challenge was doomed from the start, dead for while
+  before I dared to realize it.  The S-box (and the 'helpful' removal of
+  fix-points) is my attempt at re-animating this lifeless animal.  It is the
+  spark of Frankenstein.  I am truly sorry, and you have my sympathies, if
+  nothing else.

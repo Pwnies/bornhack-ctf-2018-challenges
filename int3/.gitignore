@@ -1,0 +1,4 @@
+*.s
+*.h
+int3*
+.gdb_history

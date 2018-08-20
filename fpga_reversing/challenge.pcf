@@ -1,0 +1,4 @@
+set_io clk C16
+set_io cs D16
+set_io i E16
+set_io o F16

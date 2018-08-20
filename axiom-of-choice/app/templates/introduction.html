@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+
+{% block title %}
+Introduction
+{% endblock %}
+
+{% block contents %}
+<style type="text/css">
+.palette {
+    display: inline-block;
+    width: 50pt;
+    height: 50pt;
+    padding:5pt;
+    border-radius: 10pt;
+}
+</style>
+
+<a href="https://en.wikipedia.org/wiki/L-system">Wikipedia</a> states:
+
+<p style="margin-left: 15pt;">
+  An <b>L-system</b> or <b>Lindenmayer system</b> is a parallel <a href="https://en.wikipedia.org/wiki/Rewriting_system" class="mw-redirect" title="Rewriting system">rewriting system</a> and a type of <a href="https://en.wikipedia.org/wiki/Formal_grammar" title="Formal grammar">formal grammar</a>. An L-system consists of an <a href="https://en.wikipedia.org/wiki/Alphabet" title="Alphabet">alphabet</a> of symbols that can be used to make <a href="https://en.wikipedia.org/wiki/String_(computer_science)" title="String (computer science)">strings</a>, a collection of <a href="https://en.wikipedia.org/wiki/Production_(computer_science)" title="Production (computer science)">production rules</a> that expand each symbol into some larger string of symbols, an initial "<a href="https://en.wikipedia.org/wiki/Axiom" title="Axiom">axiom</a>" string from which to begin construction, and a mechanism for translating the generated strings into geometric structures. L-systems were introduced and developed in 1968 by <a href="https://en.wikipedia.org/wiki/Aristid_Lindenmayer" title="Aristid Lindenmayer">Aristid Lindenmayer</a>, a Hungarian theoretical <a href="https://en.wikipedia.org/wiki/Biologist" title="Biologist">biologist</a> and <a href="https://en.wikipedia.org/wiki/Botanist" class="mw-redirect" title="Botanist">botanist</a> at the <a href="https://en.wikipedia.org/wiki/Utrecht_University" title="Utrecht University">University of Utrecht</a>. Lindenmayer used L-systems to describe the behaviour of plant cells and to model the growth processes of <a href="https://en.wikipedia.org/wiki/Plant_development" title="Plant development">plant development</a>. L-systems have also been used to model the morphology of a variety of organisms<sup id="cite_ref-1" class="reference"><a href="https://en.wikipedia.org/wiki/L-system#cite_note-1">[1]</a></sup> and can be used to generate self-similar <a href="https://en.wikipedia.org/wiki/Fractal" title="Fractal">fractals</a>.
+</p>
+
+<h2>L-system</h2>
+
+An L-system is defined by an <i>alphabet</i>, an <i>axiom</i> and an
+ordered set of <i>rules</i>:
+
+<ul>
+  <li>
+    The alphabet is a set of symbols, some of which can be replaced
+    (<i>variables</i>) and some of which that can't
+    (<i>constants</i>). Variables are denoted by <tt>a</tt>, <tt>b</tt>,
+    ..., <tt>z</tt>.  We do not distinguish between uppercase and lowercase
+    variables (e.g. a rule with <tt>a</tt> on the left-hand-side will match
+    both <tt>a</tt> and <tt>A</tt>), but allow both for the purpose of graphical
+    representation (see "Turtle graphics" below).  Therefore the casing of rules
+    should be preserved.  The constants
+    are <tt>(</tt>, <tt>)</tt>, <tt>[</tt>, <tt>]</tt>, <tt>&lt;</tt>, <tt>&gt;</tt>, <tt>^</tt>, <tt>!</tt>, <tt>+</tt>, <tt>-</tt>, <tt>/</tt>
+    and <tt>\</tt>.
+  </li>
+
+  <li>
+    The axiom is a non-empty string of symbols, defining the 0<sup>th</sup>
+    generation.
+  </li>
+
+  <li>
+    A rule is a 2-tuple consisting of a <i>pattern</i> and
+    a <i>replacement</i>.  The pattern is a non-empty list of variables
+    and the replacement is any string of symbols.  A rule is written
+    as <i>pattern → replacement</i>.
+
+    <br />
+
+    To obtain the <i>i&nbsp;</i><sup>th</sup> generation each rule's
+    left-hand-side is compared to the <i>i-1&nbsp;</i><sup>th</sup>
+    generation at every index.  If a match is found, the substring is
+    replaced by the rule's replacement.  The rules are applied
+    left-to-right.
+  </li>
+</ul>
+
+<h2>Turtle graphics</h2>
+
+A graphical representation of a (generation of) an L-system is given by the
+following turtle graphics interpretation of the symbols of the alphabet.  The
+state of the turtle is given by its position and direction, and the color of the
+pencil and whether it is currently up (not drawing) or down (drawing).  In each
+step the tile at the turtle's current position is painted by the color of the
+pencil (if the pencil is down) <i>before</i> applying the action of the next
+symbol in the L-system generation.
+
+<h3>Initial state</h3>
+
+<ul>
+  <li>
+    Position: (0, 0).
+  </li>
+
+  <li>
+    Direction: South.
+  </li>
+
+  <li>
+    Pen: (Palette color #1, Up).
+  </li>
+</ul>
+
+<h3>Symbol actions</h3>
+
+<ul>
+
+  <li>
+    <tt>a</tt>, ..., <tt>z</tt> : No action.
+  </li>
+
+  <li>
+    <tt>A</tt>, ..., <tt>Z</tt> and <tt>^</tt> : Move forward.
+  </li>
+
+  <li>
+    <tt>(</tt> : Save turtle state.
+  </li>
+
+  <li>
+    <tt>)</tt> : Recall last saved state.
+  </li>
+
+  <li>
+    <tt>[</tt> : Save turtle state and turn 90° CCW.
+  </li>
+
+  <li>
+    <tt>]</tt> : Recall last saved state and turn 90° CW.
+  </li>
+
+  <li>
+    <tt>&lt;</tt> : Turn 90° CCW.
+  </li>
+
+  <li>
+    <tt>&gt;</tt> : Turn 90° CW.
+  </li>
+
+  <li>
+    <tt>!</tt> : Put pencil down if it is currently not, or vice versa.
+  </li>
+
+  <li>
+    <tt>+</tt> : Put pencil down.
+  </li>
+
+  <li>
+    <tt>-</tt> : Take pencil up.
+  </li>
+
+  <li>
+    <tt>/</tt> : Change pencil color to next palette entry (possibly wrapping
+    around).
+  </li>
+
+  <li>
+    <tt>\</tt> : Change pencil color to previous palette entry (possibly
+    wrapping around).
+  </li>
+
+  <li>
+    . : Paint tile at current position regardless of whether the pencil is up or
+    down.
+  </li>
+
+</ul>
+
+<h3>Palette</h3>
+
+<span style="margin: 20pt;">
+  <span class="palette" style="background: #fce94f;">1</span>
+  <span class="palette" style="background: #fcaf3e;">2</span>
+  <span class="palette" style="background: #e9b96e;">3</span>
+  <span class="palette" style="background: #8ae234;">4</span>
+  <span class="palette" style="background: #729fcf;">5</span>
+  <span class="palette" style="background: #ad7fa8;">6</span>
+  <span class="palette" style="background: #ef2929;">7</span>
+</span>
+
+<h2>Example</h2>
+
+<ul>
+
+  <li>
+    Axiom: <tt>////+a^</tt>
+  </li>
+
+  <li>
+    Rules:
+    <ul>
+      <li>
+        <tt>a</tt> → <tt>^B[^A]^A</tt>
+      </li>
+      <li>
+        <tt>b</tt> → <tt>BB</tt>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    Gen. 1: <br />
+    <tt>
+      ////+^B[^A]^A^
+    </tt>
+    <br />
+    <img src="static/example-1.png" />
+  </li>
+
+  <li>
+    Gen. 2: <br />
+    <tt>
+      ////+^BB[^^B[^A]^A]^^B[^A]^A^
+    </tt>
+    <br />
+    <img src="static/example-2.png" />
+  </li>
+
+  <li>
+    Gen. 3: <br />
+    <tt>
+      ////+^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A^
+    </tt>
+    <br />
+    <img src="static/example-3.png" />
+  </li>
+
+  <li>
+    Gen. 4: <br />
+    <tt>
+      ////+^BBBBBBBB[^^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A]^^BBBB[^<br />
+      ^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A^
+    </tt>
+    <br />
+    <img src="static/example-4.png" />
+  </li>
+
+  <li>
+    Gen. 5: <br />
+    <tt>
+      ////+^BBBBBBBBBBBBBBBB[^^BBBBBBBB[^^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A<br />
+      ]^^B[^A]^A]^^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A]^^BBBBBBBB[^<br />
+      ^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A]^^BBBB[^^BB[^^B[^A]^A]^^<br />
+      B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A^
+    </tt>
+    <br />
+    <img src="static/example-5.png" />
+  </li>
+
+  <li>
+    Gen. 6: <br />
+    <tt>
+      ////+^BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[^^BBBBBBBBBBBBBBBB[^^BBBBBBBB[^^BBBB[^^BB<br />
+      [^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A]^^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^<br />
+      BB[^^B[^A]^A]^^B[^A]^A]^^BBBBBBBB[^^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A<br />
+      ]^^B[^A]^A]^^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A]^^BBBBBBBBBB<br />
+      BBBBBB[^^BBBBBBBB[^^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A]^^BBB<br />
+      B[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A]^^BBBBBBBB[^^BBBB[^^BB[^^B[^<br />
+      A]^A]^^B[^A]^A]^^BB[^^B[^A]^A]^^B[^A]^A]^^BBBB[^^BB[^^B[^A]^A]^^B[^A]^A]^^BB[^^B<br />
+      [^A]^A]^^B[^A]^A^
+    </tt>
+    <br />
+    <img src="static/example-6.png" />
+  </li>
+
+
+</ul>
+{% endblock %}

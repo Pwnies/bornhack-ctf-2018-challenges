@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+Challenge
+{% endblock %}
+
+{% block contents %}
+
+{% if flag %}
+
+<h1>{{ flag }}</h1>
+
+{% elif error %}
+
+<center><h2 style="color: red;">{{ error }}</h2></center>
+
+{% else %}
+
+{% if msg %}
+
+<center><h2 style="color: green;">{{ msg }}</h2></center>
+
+{% endif %}
+
+<center>
+  <form action="" method="post">
+    <input name="axiom" type="text" placeholder="axiom"
+           pattern="[a-zA-Z()\[\]<>^!+-#.]+">
+    <input type="submit" value="Go!" />
+  </form>
+</center>
+
+Please provide an axiom, that given these rules:<br />
+
+<ul>
+{% for lhs, rhs in rules %}
+
+<li>
+  <tt>{{ lhs }}</tt>&nbsp;→&nbsp;<tt>{{ rhs }}</tt>
+</li>
+
+{% endfor %}
+</ul>
+
+at generation {{ ngens }} results in this graphical representation:<br />
+
+<img src="{{ img }}">
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}
+Playground
+{% endblock %}
+
+{% block contents %}
+
+<center>
+  <form action="" method="post">
+    <p>
+      Generations:
+      <br />
+      <input name="ngens" type="number" step="1" min="1" max="10"
+             {% if ngens %}
+             value="{{ ngens[0] }}"
+             {% else %}
+             value="5"
+             {% endif %}
+             />
+    </p>
+
+    <p>
+      Axiom:<br />
+      <!-- <input name="axiom" type="text" pattern="[a-z]+" -->
+      <input name="axiom" type="text" pattern="[a-zA-Z()\[\]<>^!+-#.]+"
+             {% if axiom %}
+             value="{{ axiom[0] }}"
+             {% else %}
+             value="a"
+             {% endif %}
+             />
+    </p>
+
+    <p>
+      Rules:
+      <br />
+      {% for i in range(5) %}
+      <input name="lhs" type="text" pattern="[a-z]+"
+             {% if lhs %}
+             value="{{ lhs[i] }}"
+             {% endif %}
+             /> →
+      <input name="rhs" type="text" pattern="[a-zA-Z()\[\]<>^!+-#.]*"
+             {% if lhs %}
+             value="{{ rhs[i] }}"
+             {% endif %}
+             />
+      <br />
+      {% endfor %}
+    </p>
+
+    <p>
+      <input type="submit" value="Go!" />
+    </p>
+  </form>
+</center>
+
+{% if error %}
+<center><h2 style="color: red;">{{ error }}</h2></center>
+{% else %}
+
+{% if generations %}
+<ul>
+  {% for (gen, img) in generations %}
+  <li>
+    Gen. {{ loop.index }}:
+    <br />
+    <tt>
+      {{ gen|safe }}
+    </tt>
+    <br />
+    {% if img %}
+    <img src="data:image/png;base64,{{ img }}">
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

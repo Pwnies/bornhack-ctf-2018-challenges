@@ -1,0 +1,11 @@
+# https://twitter.com/broken_flag
+
+user:               Broken_Flag
+pass:               <the usual pwnies password>
+
+consumer_key:       wFuneZinJAYeALCjyY05Ol7Tc
+consumer_secret:    6ntPk73uEzQkO2ygDaf2j0oU7iWyCCZJPejxAHyansbTdxDnh7
+
+accessToken:        1027597184185917440-5qoruhv70J6IzOOWFDIPB0rbnj9Kvo
+accessTokenSecret:  nt8suqYhOnrVh92b2WplDfRFKkrnQ3076OJpHaBA8xuRq
+

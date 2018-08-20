@@ -1,0 +1,4 @@
+set_io pin_C16 C16
+set_io pin_D16 D16
+set_io pin_E16 E16
+set_io pin_F16 F16
