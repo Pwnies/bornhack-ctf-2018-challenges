@@ -1,0 +1,7 @@
+BLE_API/*
+BUILD/*
+mbed/*
+nRF51822/*
+**/.hg
+mbed_settings.*
+.temp/*
